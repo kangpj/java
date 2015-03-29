@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+  <display-name>Play Ball</display-name>
+  <description>
+  :-D
+  </description>
+  
+  <resource-env-ref>
+    <resource-env-ref-name>jdbc/erii</resource-env-ref-name>
+    <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+  </resource-env-ref>
+
+  <servlet>
+    <servlet-name>sihap</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.SihapServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>sihap</servlet-name>
+    <url-pattern>/sihap</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>
