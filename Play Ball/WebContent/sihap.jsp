@@ -27,11 +27,11 @@
   }
 </style>
 </head>
-<body bgcolor="black">
+<body>
 <center>
 <table width="100%">
 <tr>
-<td align="right"><a href="/menu.jsp"><img src="burning.png"></a></td>
+<td align="left"><a href="/menu.jsp"><img src="img/logo_small.png"></a></td>
 </tr>
 </table>
 <table border="1" width="300" height="50">
