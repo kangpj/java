@@ -34,6 +34,7 @@
 <td align="left"><a href="/menu.jsp"><img src="img/logo_small.png"></a></td>
 </tr>
 </table>
+<hr>
 <table border="1" width="300" height="50">
   <tr><td align="center" bgcolor="white"><b>시합관리</b></td></tr>
 </table>

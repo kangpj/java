@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-  version="3.0"
-  metadata-complete="true">
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true" version="3.0">
   <display-name>Play Ball</display-name>
   <description>
   :-D
   </description>
-  
   <resource-ref>
     <res-ref-name>jdbc/erii</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
-
   <servlet>
     <servlet-name>sihap</servlet-name>
     <servlet-class>com.itmoth.playball.controller.SihapServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>sihap</servlet-name>
     <url-pattern>/sihap</url-pattern>
   </servlet-mapping>
-
-
+  <servlet>
+    <servlet-name>manage</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.ManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>manage</servlet-name>
+    <url-pattern>/manage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>operate</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.OperateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>operate</servlet-name>
+    <url-pattern>/operate</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>plan</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.PlanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>plan</servlet-name>
+    <url-pattern>/plan</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>lookup</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.LookupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>lookup</servlet-name>
+    <url-pattern>/lookup</url-pattern>
+  </servlet-mapping>  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>
