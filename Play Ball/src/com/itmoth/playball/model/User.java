@@ -2,18 +2,15 @@ package com.itmoth.playball.model;
 
 import java.io.Serializable;
 
-enum Gender { MALE, FEMALE }
-enum League { MAJOR, MINOR }
-
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String id_user;
 	private String name_user;
-	private Gender gender_user;
+	private String gender_user;
 	private String authKey_user;
-	private League league_user;
+	private String league_user;
 	private boolean participant_user;
 	public String getId_user() {
 		return id_user;
@@ -27,10 +24,10 @@ public class User implements Serializable {
 	public void setName_user(String name_user) {
 		this.name_user = name_user;
 	}
-	public Gender getGender_user() {
+	public String getGender_user() {
 		return gender_user;
 	}
-	public void setGender_user(Gender gender_user) {
+	public void setGender_user(String gender_user) {
 		this.gender_user = gender_user;
 	}
 	public String getAuthKey_user() {
@@ -39,10 +36,10 @@ public class User implements Serializable {
 	public void setAuthKey_user(String authKey_user) {
 		this.authKey_user = authKey_user;
 	}
-	public League getLeague_user() {
+	public String getLeague_user() {
 		return league_user;
 	}
-	public void setLeague_user(League league_user) {
+	public void setLeague_user(String league_user) {
 		this.league_user = league_user;
 	}
 	public boolean isParticipant_user() {

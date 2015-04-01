@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -33,11 +34,11 @@ public class UserDao {
 		}		
 	}
 	
-	public List<User> getUsersAll() {
+	public List<User> getList() {
 		List<User> userList = null;
+		userList = new ArrayList<User>();
 		PreparedStatement ps = null;		
-		try {
-			User user = null;
+		try {			
 			conn.prepareStatement(sql_selectAll);
 			ResultSet rs  = ps.executeQuery();
 			while(rs.next()) {
@@ -51,13 +52,14 @@ public class UserDao {
 		}
 		return userList;
 	}
+	
     private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.(resultSet.getLong("id"));
-        user.(resultSet.getString("email"));
-        user.(resultSet.getString("firstname"));
-        user.(resultSet.getString("lastname"));
-        user.(resultSet.getDate("birthdate"));
+        user.setId_user(resultSet.getString("id_user"));
+        user.setName_user(resultSet.getString("name_user"));
+        user.setGender_user(resultSet.getString("gender_user"));
+        user.setAuthKey_user(resultSet.getString("authKey_user"));
+        user.setLeague_user(resultSet.getString("league_user"));
         return user;
     }	
 }

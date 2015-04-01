@@ -18,7 +18,7 @@
 <form method="POST" action="dept"><small><input type="submit" value="기관"></small></form>
 </td>
 <td width="100" align="center">
-<form method="POST" action="user"><small><input type="submit" value="선수"></small></form>
+<form method="POST" action="userManage"><small><input type="submit" value="선수"></small></form>
 </td>
 <td width="100" align="center">
 <form method="POST" action="sport"><small><input type="submit" value="종목"></small></form>
