@@ -33,7 +33,7 @@
     <servlet-name>operate</servlet-name>
     <url-pattern>/operate</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>plan</servlet-name>
     <servlet-class>com.itmoth.playball.controller.PlanServlet</servlet-class>
   </servlet>
@@ -48,16 +48,15 @@
   <servlet-mapping>
     <servlet-name>lookup</servlet-name>
     <url-pattern>/lookup</url-pattern>
-  </servlet-mapping> 
-     <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>userManage</servlet-name>
     <servlet-class>com.itmoth.playball.controller.UserManageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>userManage</servlet-name>
     <url-pattern>/userManage</url-pattern>
-  </servlet-mapping>  
-   
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>

@@ -39,7 +39,7 @@ public class UserDao {
 		userList = new ArrayList<User>();
 		PreparedStatement ps = null;		
 		try {			
-			conn.prepareStatement(sql_selectAll);
+			ps = conn.prepareStatement(sql_selectAll);
 			ResultSet rs  = ps.executeQuery();
 			while(rs.next()) {
 				userList.add(map(rs));
@@ -60,6 +60,7 @@ public class UserDao {
         user.setGender_user(resultSet.getString("gender_user"));
         user.setAuthKey_user(resultSet.getString("authKey_user"));
         user.setLeague_user(resultSet.getString("league_user"));
+        user.setParticipant_user(resultSet.getBoolean("participant_user"));
         return user;
     }	
 }
