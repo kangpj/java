@@ -32,6 +32,7 @@
 </tr>
 </table>
 <hr>
+<form id="opForm" method="POST" action="userManage">
 <table bordercolor="#aaccff" width="80%" border="1" cellpadding="2" cellspacing="0">
 <tr>
 <td align="center" width="5%">선택</td>
@@ -45,7 +46,7 @@
 	List<User> users = (List<User>)request.getAttribute("list");
 	for(User user : users) {
 		out.print("<tr>");
-		out.print("<td align=\"center\"><input name=\"" + user.getId_user() + "\" type=\"checkbox\"></td>");
+		out.print("<td align=\"center\"><input name=\"checkId\" value=\"" + user.getId_user() + "\" type=\"checkbox\"></td>");
 		out.print("<td>" + user.getName_user() + "</td>");
 		out.print("<td>" + user.getGender_user() + "</td>");
 		out.print("<td>" + user.getId_user() + "</td>");
@@ -58,21 +59,32 @@
 	}
 %>
 </table>
-
- <table width="400"><tr>
+<input type="hidden" id="opHidden" name="operation" value="">
+<table width="400"><tr>
 <td width="100" align="center">
-<form method="POST" action="addUser.jsp"><small><input type="submit" value="등록"></small></form>
-</td>
-<td width=100" align="center">
-<form method="POST" action="modifyUser"><small><input type="submit" value="수정"></small></form>
+<small><input type="button" value="등록" onclick="setNfoward('create')"></small>
 </td>
 <td width="100" align="center">
-<form method="POST" action="deleteUser"><small><input type="submit" value="탈퇴"></small></form>
+<small><input type="button" value="수정" onclick="setNfoward('update')"></small>
+</td>
+<td width="100" align="center">
+<small><input type="button" value="탈퇴" onclick="setNfoward('delete')"></small>
 </td>
 </tr>
 </table>
+</form>
 <hr>
 <table><tr><td align="center">건강한 그리고 즐거운 직장생활을 위하여</td></tr><tr><td align="center">Ver.0.1</td></tr></table>
 </center>
+<script>
+function setNfoward(op) {
+	document.getElementById("opHidden").value = op;
+	document.getElementById("opForm").submit();
+	//var x = document.createElement("INPUT");
+	//x.setAttribute("type", "button");
+	//x.setAttribute("value", op);
+	//document.body.appendChild(x);
+} 
+</script>
 </body>
 </html>

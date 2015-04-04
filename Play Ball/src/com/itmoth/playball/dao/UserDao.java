@@ -18,6 +18,8 @@ public class UserDao {
 	private Connection conn = null;
 	
 	private String sql_selectAll = "select * from tbl_user";
+	private String sql_insertUser = "insert into tbl_user values(?, ?, ?, ?, ?, ?)";
+	private String sql_deleteUser = "delete from tbl_user where id_user=?";
 	public UserDao() {
 		Context initContext;
 		Context envContext;
@@ -51,6 +53,39 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return userList;
+	}
+	
+	public void addUser(User user) {
+		PreparedStatement ps = null;
+		int result=0;
+		try {
+			ps = conn.prepareStatement(sql_insertUser);
+			ps.setString(1, user.getId_user());
+			ps.setString(2, user.getName_user());
+			ps.setString(3, user.getGender_user());
+			ps.setString(4, user.getAuthKey_user());
+			ps.setString(5, user.getLeague_user());
+			ps.setBoolean(6, user.isParticipant_user());
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Insert result = " + result);
+	}
+	
+	public void deleteUser(List<String> idList) {
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = conn.prepareStatement(sql_deleteUser);
+			for (String id : idList) {
+				ps.setString(1, id);
+				result += ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Delete result = " + result);
 	}
 	
     private static User map(ResultSet resultSet) throws SQLException {

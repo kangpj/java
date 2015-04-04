@@ -41,7 +41,17 @@ public class AddUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		UserDao userDao = new UserDao();
+		User user = new User();
+		
+		user.setId_user(request.getParameter("id"));
+		user.setName_user(request.getParameter("name"));
+		user.setGender_user(request.getParameter("gender"));
+		user.setAuthKey_user(request.getParameter("authKey"));
+		user.setLeague_user(request.getParameter("league"));
+		user.setParticipant_user(request.getParameter("participant").equals("yes"));
+		userDao.addUser(user);
 		List<User> userList = userDao.getList();
+			
 		request.setAttribute("list", userList);
 		RequestDispatcher view = request.getRequestDispatcher("userManage.jsp"); 
 		view.forward(request, response);		

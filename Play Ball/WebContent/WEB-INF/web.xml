@@ -4,6 +4,28 @@
   <description>
   :-D
   </description>
+  
+  <filter>
+    <filter-name>CharsetFilter</filter-name>
+    <filter-class>com.itmoth.playball.filter.CharsetFilter</filter-class>
+      <init-param>
+        <param-name>requestEncoding</param-name>
+        <param-value>UTF-8</param-value>
+      </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+	<jsp-config>
+	    <jsp-property-group>
+	        <url-pattern>*.jsp</url-pattern>
+	        <page-encoding>UTF-8</page-encoding>
+	    </jsp-property-group>
+	</jsp-config>
+  
   <resource-ref>
     <res-ref-name>jdbc/erii</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
@@ -56,6 +78,14 @@
   <servlet-mapping>
     <servlet-name>userManage</servlet-name>
     <url-pattern>/userManage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>addUser</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addUser</servlet-name>
+    <url-pattern>/addUser</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
