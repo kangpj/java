@@ -41,14 +41,14 @@ public class UserManageServlet extends HttpServlet {
 		//System.out.println(op);
 		if (String.valueOf(op).equals("create")) {
 			view = request.getRequestDispatcher("addUser.jsp");
-			
-		} else if (String.valueOf(op).equals("update")) {
-			view = request.getRequestDispatcher("updateUser.jsp");
-			
 		} else {
 			if (String.valueOf(op).equals("delete")) {
 				List<String> idList = getIdList(request);
 				userDao.deleteUser(idList);
+			} else if (String.valueOf(op).equals("update")) {
+				List<String> idList = getIdList(request);
+				List<User> userList = getUserList(request, idList);
+				userDao.modifyUser(userList);
 			}
 			view = request.getRequestDispatcher("userManage.jsp");
 			List<User> userList = userDao.getList();
@@ -68,4 +68,24 @@ public class UserManageServlet extends HttpServlet {
 		return idList;
 	}
 	
+	private List<User> getUserList(HttpServletRequest request, List<String> idList) {
+		List<User> userList = new ArrayList<User>();
+		for (String id : idList) {
+			if (request.getParameter(id) != null) {
+				String values[] = request.getParameterValues(id);
+				User user = new User();
+				user.setName_user(values[0]);
+				user.setGender_user(values[1]);
+				//user.setId_user(values[2]);
+				user.setId_user(id);
+				user.setLeague_user(values[3]);
+				if (values.length >= 5)
+					user.setParticipant_user(true);
+				else
+					user.setParticipant_user(false);
+				userList.add(user);
+			}
+		}
+		return userList;
+	}
 }

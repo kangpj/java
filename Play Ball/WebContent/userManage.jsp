@@ -45,16 +45,44 @@
 <%
 	List<User> users = (List<User>)request.getAttribute("list");
 	for(User user : users) {
+		String name = user.getName_user();
+		String id = user.getId_user();
+		String gender = user.getGender_user();
+		String league = user.getLeague_user();
 		out.print("<tr>");
-		out.print("<td align=\"center\"><input name=\"checkId\" value=\"" + user.getId_user() + "\" type=\"checkbox\"></td>");
-		out.print("<td>" + user.getName_user() + "</td>");
-		out.print("<td>" + user.getGender_user() + "</td>");
-		out.print("<td>" + user.getId_user() + "</td>");
-		out.print("<td>" + user.getLeague_user() + "</td>");
-		if (user.isParticipant_user() == true)
-			out.print("<td><input name=\"" + user.getId_user() + "\" type=\"checkbox\" checked disabled></td>");
+		out.print("<td align=\"center\"><input name=\"checkId\" id=\""+ id +"Check\" value=\"" + id + "\" type=\"checkbox\" onclick=\"switchMod('"+id+"')\"></td>");
+		out.print("<td><input name=\"" + id + "\" id=\""+ id +"Name\" value=\""+ name +"\" readonly></td>");
+		//out.print("<td><input name=\"" + id + "\" id=\""+ id +"Gender\" value=\""+ gender +"\" readonly></td>");
+		out.print("<td>");
+		out.print("<select name=\"" + id + "\" id=\""+ id + "Gender\" disabled>");
+		if ("MALE".equals(gender))
+			out.print("<option value=\"MALE\" selected>남자</option>");
+		else 
+			out.print("<option value=\"MALE\">남자</option>");
+		if ("FEMALE".equals(gender))
+			out.print("<option value=\"FEMALE\" selected>여자</option>");
 		else
-			out.print("<td><input name=\"" + user.getId_user() + "\" type=\"checkbox\" disabled></td>");
+			out.print("<option value=\"FEMALE\">여자</option>");
+		out.print("</select>");
+		out.print("</td>");
+		out.print("<td><input name=\"" + id + "\" id=\""+ id +"Id\" value=\""+ id +"\" readonly></td>");
+		//out.print("<td><input name=\"" + id + "\" id=\""+ id +"League\" value=\""+ league +"\" readonly></td>");
+		out.print("<td>");
+		out.print("<select name=\""+ id + "\" id=\""+ id + "League\" disabled>");
+		if ("MAJOR".equals(league))
+			out.print("<option value=\"MAJOR\" selected>Major</option>");
+		else 
+			out.print("<option value=\"MAJOR\">Major</option>");
+		if ("MINOR".equals(league))
+			out.print("<option value=\"MINOR\" selected>Minor</option>");
+		else
+			out.print("<option value=\"MINOR\">Minor</option>");
+		out.print("</select>");
+		out.print("</td>");		
+		if (user.isParticipant_user() == true)
+			out.print("<td><input name=\"" + id + "\" id=\"" + id + "Participant\" type=\"checkbox\" checked disabled></td>");
+		else
+			out.print("<td><input name=\"" + id + "\" id=\"" + id + "Participant\" type=\"checkbox\" disabled></td>");
 		out.print("</tr>");
 	}
 %>
@@ -85,6 +113,28 @@ function setNfoward(op) {
 	//x.setAttribute("value", op);
 	//document.body.appendChild(x);
 } 
+function switchMod(id) {
+	var x = document.getElementById(id + "Check");
+	if(x.checked) {
+		x = document.getElementById(id + "Name");
+		x.removeAttribute("readOnly");
+		x = document.getElementById(id + "Gender");
+		x.removeAttribute("disabled");
+		x = document.getElementById(id + "Id");
+		x.removeAttribute("readOnly");
+		x = document.getElementById(id + "League");
+		x.removeAttribute("disabled");
+		x = document.getElementById(id + "Participant");
+		x.removeAttribute("disabled");
+	} else {
+		document.getElementById(id + "Name").readOnly=true;
+		document.getElementById(id + "Gender").disabled=true;
+		document.getElementById(id + "Id").readOnly=true;
+		document.getElementById(id + "League").disabled=true;
+		document.getElementById(id + "Participant").disabled=true;
+	}
+	
+}
 </script>
 </body>
 </html>

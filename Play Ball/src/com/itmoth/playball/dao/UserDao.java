@@ -20,6 +20,7 @@ public class UserDao {
 	private String sql_selectAll = "select * from tbl_user";
 	private String sql_insertUser = "insert into tbl_user values(?, ?, ?, ?, ?, ?)";
 	private String sql_deleteUser = "delete from tbl_user where id_user=?";
+	private String sql_modifyUser = "update tbl_user set name_user=?, gender_user=?, league_user=?, participant_user=? where id_user=?";
 	public UserDao() {
 		Context initContext;
 		Context envContext;
@@ -88,6 +89,24 @@ public class UserDao {
 		System.out.println("Delete result = " + result);
 	}
 	
+	public void modifyUser(List<User> userList) {
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = conn.prepareStatement(sql_modifyUser);
+			for (User user : userList) {
+				ps.setString(1, user.getName_user());
+				ps.setString(2, user.getGender_user());
+				ps.setString(3, user.getLeague_user());
+				ps.setBoolean(4, user.isParticipant_user());
+				ps.setString(5, user.getId_user());
+				result += ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Update result = " + result);
+	}
     private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId_user(resultSet.getString("id_user"));
