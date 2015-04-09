@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itmoth.playball.dao.LookupDao;
+import com.itmoth.playball.model.Funding;
 import com.itmoth.playball.model.Ranking;
 
 /**
@@ -42,13 +43,18 @@ public class LookupServlet extends HttpServlet {
 		LookupDao lookupDao = new LookupDao();
 		RequestDispatcher view = null;
 		String op = request.getParameter("operation");
+		System.out.println(op);
 		if (String.valueOf(op).equals("performance")) {
+			view = request.getRequestDispatcher("performance.jsp");
 		} else if (String.valueOf(op).equals("fund")) {
+			List<Funding> fundingList = lookupDao.getFunding();
+			request.setAttribute("list", fundingList);
+			view = request.getRequestDispatcher("fund.jsp");
 		} else {
 			List<Ranking> rankingList = lookupDao.getRanking();
 			request.setAttribute("list", rankingList);
+			view = request.getRequestDispatcher("lookup.jsp");
 		}
-		view = request.getRequestDispatcher("lookup.jsp");
 		view.forward(request, response);		
 	}
 }

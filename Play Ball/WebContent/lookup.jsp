@@ -16,9 +16,8 @@
 <td align="left" width="15%"><a href="index.jsp"><img src="img/logo_small.png"></a></td>
 <td valign="bottom" align="left"><b>조희</b></td>
 <td valign="bottom" align="left">
-<form method="POST" action="lookup">
-<input type="hidden" id="opHidden" name="operation" value="">
- <table width="300"><tr>
+<form id="opForm" method="POST" action="lookup">
+<table width="300"><tr>
 <td width="100" align="center">
 <small><input type="button" value="순위" onclick="setNfoward('rank')"></small>
 </td>
@@ -30,6 +29,7 @@
 </td>
 </tr>
 </table>
+<input type="hidden" id="opHidden" name="operation" value="">
 </form>
 </td>
 </tr>
@@ -43,8 +43,8 @@
 <td width="10%">승</td>
 <td width="10%">패</td>
 <td width="10%">승률(%)</td>
-<td width="10%">부과금액</td>
-<td width="10%">납부금액</td>
+<td width="10%">고지금액</td>
+<td width="10%">입금액</td>
 </tr>
 <%
 	List<Ranking> rankingList = (List<Ranking>)request.getAttribute("list");
