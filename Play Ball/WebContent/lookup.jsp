@@ -39,7 +39,7 @@
 <tr>
 <td align="center" width="10%">순위</td>
 <td width="20%">이름</td>
-<td width="15%">출경기수</td>
+<td width="15%">출전경기수</td>
 <td width="10%">승</td>
 <td width="10%">패</td>
 <td width="10%">승률(%)</td>

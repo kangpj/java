@@ -37,11 +37,11 @@
 <hr>
 <table bordercolor="#aaccff" width="80%" border="1" cellpadding="2" cellspacing="0">
 <tr>
-<td align="center" width="10%">연번</td>
+<td align="center" width="10%">순번</td>
 <td width="15%">날짜</td>
 <td width="10%">입금액</td>
 <td width="10%">출금액</td>
-<td width="45%">납부자</td>
+<td width="45%">명단</td>
 <td width="10%">모금액</td>
 </tr>
 <%
