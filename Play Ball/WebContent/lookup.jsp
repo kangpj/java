@@ -22,7 +22,7 @@
 <small><input type="button" value="순위" onclick="setNfoward('rank')"></small>
 </td>
 <td width="100" align="center">
-<small><input type="button" value="개인성적" onclick="setNfoward('performance')"></small>
+<small><input type="button" value="대전결과" onclick="setNfoward('performance')"></small>
 </td>
 <td width="100" align="center">
 <small><input type="button" value="후원금" onclick="setNfoward('fund')"></small>

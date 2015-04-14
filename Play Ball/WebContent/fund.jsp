@@ -23,7 +23,7 @@
 <small><input type="button" value="순위" onclick="setNfoward('rank')"></small>
 </td>
 <td width="100" align="center">
-<small><input type="button" value="개인성적" onclick="setNfoward('performance')"></small>
+<small><input type="button" value="대전결과" onclick="setNfoward('performance')"></small>
 </td>
 <td width="100" align="center">
 <small><input type="button" value="후원금" onclick="setNfoward('fund')"></small>
@@ -37,12 +37,12 @@
 <hr>
 <table bordercolor="#aaccff" width="80%" border="1" cellpadding="2" cellspacing="0">
 <tr>
-<td align="center" width="10%">순번</td>
-<td width="15%">날짜</td>
-<td width="10%">입금액</td>
-<td width="10%">출금액</td>
-<td width="45%">명단</td>
-<td width="10%">모금액</td>
+<td align="center" width="20%">순번</td>
+<td width="20%">날짜</td>
+<td width="20%">입금액</td>
+<td width="20%">출금액</td>
+<!-- <td width="45%">명단</td> -->
+<td width="20%">모금액</td>
 </tr>
 <%
 	List<Funding> fundingList = (List<Funding>)request.getAttribute("list");
@@ -58,7 +58,7 @@
 		out.print("<td>"+ ilja + "</td>");
 		out.print("<td>"+ invest + "</td>");
 		out.print("<td>"+ withdraw + "</td>");
-		out.print("<td>"+ investor + "</td>");
+		//out.print("<td>"+ investor + "</td>");
 		out.print("<td>"+ balance + "</td>");
 		out.print("</tr>");
 	}
