@@ -19,22 +19,36 @@
 </tr>
 </table>
 <hr>
+<form id="opForm" method="POST" action="mainMenu">
+<input type="hidden" id="opHidden" name="operation" value="lookup">
 <table width="400">
 <tr>
 <td width="100" align="center">
-<form method="POST" action="lookup"><small><input type="submit" value="조회"></small></form>
+<small><input type="button" onclick="setNfoward('lookup')" value="조회"></small>
 </td>
 <td width="100" align="center">
-<form method="POST" action="plan"><small><input type="submit" value="기획"></small></form>
+<small><input type="button" onclick="setNfoward('plan')" value="기획"></small>
 </td>
 <td width="100" align="center">
-<form method="POST" action="operate"><small><input type="submit" value="운영"></small></form>
+<small><input type="button" onclick="setNfoward('operate')" value="운영"></small>
 </td>
 <td width="100" align="center">
-<form method="POST" action="manage"><small><input type="submit" value="관리"></small></form>
+<small><input type="button" onclick="setNfoward('management')" value="관리"></small>
 </td>
 </tr>
 </table>
+</form>
 </center>
+<script>
+function setNfoward(op) {
+	document.getElementById("opHidden").value = op;
+	document.getElementById("opForm").submit();
+	//var x = document.createElement("INPUT");
+	//x.setAttribute("type", "button");
+	//x.setAttribute("value", op);
+	//document.body.appendChild(x);
+} 
+</script>
+
 </body>
 </html>
