@@ -1,6 +1,7 @@
 package com.itmoth.playball.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.itmoth.playball.dao.GameDao;
+import com.itmoth.playball.dao.LookupDao;
+import com.itmoth.playball.model.Ranking;
+import com.itmoth.playball.model.Sport;
 
 /**
  * Servlet implementation class MainMenu
@@ -39,9 +45,15 @@ public class MainMenu extends HttpServlet {
 		String menu = request.getParameter("operation");
 		RequestDispatcher view = null;
 		if (menu.equals("lookup")) {
+			LookupDao lookupDao = new LookupDao();
+			List<Ranking> rankingList = lookupDao.getRanking();
+			request.setAttribute("list", rankingList);
 			view = request.getRequestDispatcher("lookup.jsp");
 		} else if (menu.equals("plan")) {
-			view = request.getRequestDispatcher("plna.jsp");			
+			GameDao gameDao = new GameDao();
+			List<Sport> sportList = gameDao.getSport();
+			request.setAttribute("list", sportList);
+			view = request.getRequestDispatcher("plan.jsp");			
 		} else if (menu.equals("operate")) {
 			view = request.getRequestDispatcher("operate.jsp");			
 		} else {

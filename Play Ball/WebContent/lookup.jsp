@@ -48,26 +48,28 @@
 </tr>
 <%
 	List<Ranking> rankingList = (List<Ranking>)request.getAttribute("list");
-	for(Ranking ranking : rankingList) {
-		String name = ranking.getName();
-		String id = ranking.getId();
-		int win = ranking.getWinNum();
-		int lose = ranking.getLoseNum();
-		int participate = ranking.getParticipateNum();
-		int rank = ranking.getRank();
-		int rate = ranking.getRatePercent();
-		BigDecimal charge = ranking.getChargeDec();
-		BigDecimal payment = ranking.getPaymentDec();
-		out.print("<tr>");
-		out.print("<td>"+ rank + "</td>");
-		out.print("<td>"+ name + "</td>");
-		out.print("<td>"+ participate + "</td>");
-		out.print("<td>"+ win + "</td>");
-		out.print("<td>"+ lose + "</td>");
-		out.print("<td>"+ rate + "</td>");
-		out.print("<td>"+ charge +"</td>");
-		out.print("<td>"+ payment + "</td>");
-		out.print("</tr>");
+	if (rankingList != null) {
+		for(Ranking ranking : rankingList) {
+			String name = ranking.getName();
+			String id = ranking.getId();
+			int win = ranking.getWinNum();
+			int lose = ranking.getLoseNum();
+			int participate = ranking.getParticipateNum();
+			int rank = ranking.getRank();
+			int rate = ranking.getRatePercent();
+			BigDecimal charge = ranking.getChargeDec();
+			BigDecimal payment = ranking.getPaymentDec();
+			out.print("<tr>");
+			out.print("<td>"+ rank + "</td>");
+			out.print("<td>"+ name + "</td>");
+			out.print("<td>"+ participate + "</td>");
+			out.print("<td>"+ win + "</td>");
+			out.print("<td>"+ lose + "</td>");
+			out.print("<td>"+ rate + "</td>");
+			out.print("<td>"+ charge +"</td>");
+			out.print("<td>"+ payment + "</td>");
+			out.print("</tr>");
+		}
 	}
 %>
 </table>

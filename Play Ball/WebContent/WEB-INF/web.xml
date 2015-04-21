@@ -28,12 +28,12 @@
     <res-auth>Container</res-auth>
   </resource-ref>
   <servlet>
-    <servlet-name>plan</servlet-name>
-    <servlet-class>com.itmoth.playball.controller.PlanServlet</servlet-class>
+    <servlet-name>mainMenu</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.MainMenu</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>plan</servlet-name>
-    <url-pattern>/plan</url-pattern>
+    <servlet-name>mainMenu</servlet-name>
+    <url-pattern>/mainMenu</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>lookup</servlet-name>
@@ -42,6 +42,14 @@
   <servlet-mapping>
     <servlet-name>lookup</servlet-name>
     <url-pattern>/lookup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>plan</servlet-name>
+    <servlet-class>com.itmoth.playball.controller.PlanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>plan</servlet-name>
+    <url-pattern>/plan</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>userManage</servlet-name>

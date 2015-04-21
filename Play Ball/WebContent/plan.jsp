@@ -63,7 +63,7 @@
 <td>
 <select name="sport">
 <%
-	List<Sport> sportList = (List<Sport>)request.getAttribute("sports");
+	List<Sport> sportList = (List<Sport>)request.getAttribute("sportList");
 	for(Sport sport : sportList) {
 		long id = sport.getId_sport();
 		String name = sport.getName_sport();
