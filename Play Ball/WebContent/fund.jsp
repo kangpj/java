@@ -8,6 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>전산통합센터 예체능</title>
+  <style type='text/css'>
+    body
+{
+    padding:0px;
+    font-family:verdana;
+    font-size:8pt;
+}
+
+select
+{
+    font-family:verdana;
+    font-size:8pt;
+    width : 150px;
+    height:100px;
+}
+input
+{
+    text-align: center;
+    v-align: middle;
+}
+  </style>
+
 </head>
 <body>
 <center>

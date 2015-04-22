@@ -23,13 +23,28 @@
   });
  });
 </script>
-<style type='text/css'>
-  body {
+  <style type='text/css'>
+    body
+{
     padding:0px;
-    font-familly:vernada;
+    font-family:verdana;
     font-size:8pt;
-  }
-</style>
+}
+
+select
+{
+    font-family:verdana;
+    font-size:8pt;
+    width : 150px;
+    height:100px;
+}
+input
+{
+    text-align: center;
+    v-align: middle;
+}
+  </style>
+
 </head>
 <body>
 <center>
@@ -54,16 +69,13 @@
 </tr>
 </table>
 <hr>
-<table bordercolor="#aaccff" width="80%" border="1" cellpadding="2" cellspacing="0">
+<table bordercolor="#aaccff" width="50%" border="0" cellpadding="2" cellspacing="0">
 <tr>
-<td>종목</td>
-<td>일자</td>
-<td></td>
-<tr>
+<td align="right">종목</td>
 <td>
 <select name="sport">
 <%
-	List<Sport> sportList = (List<Sport>)request.getAttribute("sportList");
+	List<Sport> sportList = (List<Sport>)request.getAttribute("list");
 	for(Sport sport : sportList) {
 		long id = sport.getId_sport();
 		String name = sport.getName_sport();
@@ -72,9 +84,19 @@
 %>
 </select>
 </td>
+<td align="right">일자</td>
 <td>
 <input name="gameDate" type="text" class="datepicker"/>
 </td>
+<td align="right">게임비</td>
+<td>
+<select name="due">
+<option value="1000">1000</option>
+<option value="2000">2000</option>
+<option value="3000">3000</option>
+<option value="4000">4000</option>
+<option value="5000">5000</option>
+</select>
 <td>
 <small><input type="submit" value="만들기"></small>
 </td>

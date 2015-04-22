@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itmoth.playball.dao.GameDao;
+import com.itmoth.playball.model.Participant;
 import com.itmoth.playball.model.Sport;
 
 /**
@@ -48,7 +49,7 @@ public class PlanServlet extends HttpServlet {
 			request.setAttribute("list", sportList);
 			view = request.getRequestDispatcher("plan.jsp");			
 		} else { // menu.equals("matchPlan")
-			List<Sport> participantList = gameDao.getParticipant();
+			List<Participant> participantList = gameDao.getParticipant();
 			request.setAttribute("list", participantList);
 			view = request.getRequestDispatcher("match.jsp");			
 		}
