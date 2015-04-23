@@ -27,6 +27,10 @@ public class GameDao {
 	private String sql_modifyGameAfter = "update tbl_game set winning_group=?, time_game=? where id_game=?";	
 	
 	public GameDao() {
+		
+	}
+	
+	private void initConnection() {
 		Context initContext;
 		Context envContext;
 		DataSource ds;
@@ -40,13 +44,14 @@ public class GameDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-	}
+	}	
 	
 	public List<Sport> getSport() {
 		List<Sport> sportList = new ArrayList<Sport>();
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
+			initConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(sql_sport);
 			int rank = 1;
@@ -55,6 +60,7 @@ public class GameDao {
 			}
 			rs.close();
 			statement.close();
+			conn.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +72,7 @@ public class GameDao {
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
+			initConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(sql_participant);
 			rs.getFetchSize();
@@ -74,6 +81,7 @@ public class GameDao {
 			}
 			rs.close();
 			statement.close();
+			conn.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -103,6 +111,7 @@ public class GameDao {
 		PreparedStatement ps = null;
 		int result=0;
 		try {
+			initConnection();
 			ps = conn.prepareStatement(sql_insertGame);
 			ps.setLong(1, game.getId_game());
 			ps.setLong(2, game.getId_sport());
@@ -110,6 +119,8 @@ public class GameDao {
 			ps.setByte(4, game.getWinning_group());
 			ps.setBigDecimal(5, game.getDue_game());
 			result = ps.executeUpdate();
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

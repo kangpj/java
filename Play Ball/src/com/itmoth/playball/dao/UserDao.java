@@ -21,7 +21,11 @@ public class UserDao {
 	private String sql_insertUser = "insert into tbl_user values(?, ?, ?, ?, ?, ?)";
 	private String sql_deleteUser = "delete from tbl_user where id_user=?";
 	private String sql_modifyUser = "update tbl_user set name_user=?, gender_user=?, league_user=?, participant_user=? where id_user=?";
+
 	public UserDao() {
+	}
+
+	private void initConnection() {
 		Context initContext;
 		Context envContext;
 		DataSource ds;
@@ -30,7 +34,6 @@ public class UserDao {
 			envContext = (Context)initContext.lookup("java:/comp/env");
 			ds = (DataSource)envContext.lookup("jdbc/erii");
 			conn = ds.getConnection();
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,14 +44,16 @@ public class UserDao {
 		List<User> userList = null;
 		userList = new ArrayList<User>();
 		PreparedStatement ps = null;		
-		try {			
+		try {
+			initConnection();
 			ps = conn.prepareStatement(sql_selectAll);
 			ResultSet rs  = ps.executeQuery();
 			while(rs.next()) {
 				userList.add(map(rs));
 			}
 			rs.close();
-			ps.close();			
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,6 +65,7 @@ public class UserDao {
 		PreparedStatement ps = null;
 		int result=0;
 		try {
+			initConnection();
 			ps = conn.prepareStatement(sql_insertUser);
 			ps.setString(1, user.getId_user());
 			ps.setString(2, user.getName_user());
@@ -68,6 +74,8 @@ public class UserDao {
 			ps.setString(5, user.getLeague_user());
 			ps.setBoolean(6, user.isParticipant_user());
 			result = ps.executeUpdate();
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,11 +86,14 @@ public class UserDao {
 		PreparedStatement ps = null;
 		int result = 0;
 		try {
+			initConnection();
 			ps = conn.prepareStatement(sql_deleteUser);
 			for (String id : idList) {
 				ps.setString(1, id);
 				result += ps.executeUpdate();
 			}
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -93,6 +104,7 @@ public class UserDao {
 		PreparedStatement ps = null;
 		int result = 0;
 		try {
+			initConnection();
 			ps = conn.prepareStatement(sql_modifyUser);
 			for (User user : userList) {
 				ps.setString(1, user.getName_user());
@@ -102,6 +114,8 @@ public class UserDao {
 				ps.setString(5, user.getId_user());
 				result += ps.executeUpdate();
 			}
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

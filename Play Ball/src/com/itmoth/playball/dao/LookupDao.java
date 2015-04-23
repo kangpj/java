@@ -22,6 +22,9 @@ public class LookupDao {
 	private String sql_perf = "select c.id_game as 'id', c.date_game as 'date', GROUP_CONCAT(if(b.result_game='WIN', a.name_user, null) SEPARATOR ', ') as 'winner', GROUP_CONCAT(if(b.result_game='lose', a.name_user, null) SEPARATOR ', ') as 'loser'  from (select a.*, b.name_user, b.league_user from tbl_participant a, tbl_user b where a.id_user = b.id_user) a, tbl_group b, tbl_game c where a.id_game = b.id_game and b.id_game = c.id_game and a.name_group = b.name_group group by c.id_game, c.date_game";
 	private String sql_fund = "select e.*, @acc:=@acc+e.sum_invest - e.sum_withdraw as balance from (select a.date_fund as 'date', sum(a.invest_fund) as sum_invest, sum(a.withdraw_fund) as sum_withdraw, GROUP_CONCAT(d.name_user SEPARATOR ', ') as 'investor' from tbl_fund a left join ( select b.*, c.name_user from tbl_participant b, tbl_user c where b.id_user=c.id_user) d  on a.id_participant = d.id_participant group by a.date_fund) e, (select @acc:=0) f";
 	public LookupDao() {
+	}
+	
+	private void initConnection() {
 		Context initContext;
 		Context envContext;
 		DataSource ds;
@@ -36,12 +39,13 @@ public class LookupDao {
 			e.printStackTrace();
 		}		
 	}
-
+	
 	public List<Ranking> getRanking() {
 		List<Ranking> rankingList = new ArrayList<Ranking>();
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
+			initConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(sql_rank);
 			int rank = 1;
@@ -50,6 +54,7 @@ public class LookupDao {
 			}
 			rs.close();
 			statement.close();
+			conn.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -61,6 +66,7 @@ public class LookupDao {
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
+			initConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(sql_fund);
 			int rank = 1;
@@ -69,6 +75,7 @@ public class LookupDao {
 			}
 			rs.close();
 			statement.close();
+			conn.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -80,6 +87,7 @@ public class LookupDao {
 		Statement statement = null;
 		ResultSet rs = null;
 		try {
+			initConnection();
 			statement = conn.createStatement();
 			rs = statement.executeQuery(sql_perf);
 			int seq = 1;
@@ -88,11 +96,13 @@ public class LookupDao {
 			}
 			rs.close();
 			statement.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return performanceList;
 	}
+	
 	private static Performance mapPerformance(ResultSet resultSet, int seq) throws SQLException {
 		Performance instance = new Performance();
 		instance.setId_seq(seq);
